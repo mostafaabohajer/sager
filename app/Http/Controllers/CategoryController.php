@@ -59,6 +59,5 @@ class CategoryController extends Controller
         return CategoryResource::collection(
             Category::orderBy('created_at')->get()
         );
-
     }
 }

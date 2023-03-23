@@ -10,6 +10,10 @@ import User from "./view/user";
 import ProductForm from  "./view/productForm.jsx"
 import CategoryForm from  "./view/categoryForm.jsx"
 import UserForm from "./view/userForm.jsx";
+import ForgetPassword from "./view/forgetPassword";
+import ResetPassword from "./view/resetPassword.jsx";
+import Home from "./view/home.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -18,7 +22,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/dashboard',
-        element: <Dashboard/>
+        element: <Home/>
       },
       {
         path:'/product',
@@ -71,8 +75,16 @@ const router = createBrowserRouter([
         element: <Register/>
       },
       {
+        path:'/forget-password',
+        element: <ForgetPassword/>
+      },
+      {
+        path:'/reset-password',
+        element: <ResetPassword/>
+      },
+      {
         path:'/home',
-        element: <Register/>
+        element: <Home/>
       },
     ]
   }

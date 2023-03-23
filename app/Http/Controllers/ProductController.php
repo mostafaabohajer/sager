@@ -158,4 +158,11 @@ class ProductController extends Controller
             }
         }
     }
+
+    public function allProduct(Request $request)
+    {
+        return ProductResource::collection(
+            Product::orderBy('created_at')->paginate(30)
+        );
+    }
 }

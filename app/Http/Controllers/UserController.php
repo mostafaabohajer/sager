@@ -50,5 +50,10 @@ class UserController extends Controller
         $user->delete();
         return response('', 204);
     }
-
+    public function allUser(Request $request)
+    {
+        return UserResource::collection(
+            User::orderBy('created_at')->get()
+        );
+    }
 }
