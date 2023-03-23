@@ -20,7 +20,7 @@ export default function Home() {
     axiosClient.get(url).then(({ data }) => {
       if(url == "/all-category"){
         setCategories(data.data);
-      }if(url == "/all-user"){
+      }else if(url == "/all-user"){
         setUsers(data.data);
       }else{
         setProducts(data.data);
