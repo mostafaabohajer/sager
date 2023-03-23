@@ -2,63 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        //
+        return CategoryResource::collection(
+            Category::orderBy('updated_at', 'desc')->paginate(2)
+        );
+
+    }
+    public function show($slug)
+    {
+        return CategoryResource::collection(
+            Category::where('slug',$slug)->get()
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(CategoryRequest $request)
     {
-        //
+        $Category = Category::create($request->all());
+
+        return new CategoryResource($Category);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function update(Request $request, $slug)
     {
-        //
+        $Category = Category::where('slug',$slug);
+
+
+        if(!$Category->get()->isEmpty()){
+            $request->request->remove('slug');
+            $Category->update($request->all());
+        }
+        return "done";
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(Request $request, Category $Category)
     {
-        //
+        if($Category->products->isEmpty()){
+            $Category->delete();
+            return response()->json(['status' => 204]);
+        }else{
+            return response()->json(['status' => 501]);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function allCategory(Request $request)
     {
-        //
-    }
+        return CategoryResource::collection(
+            Category::orderBy('created_at')->get()
+        );
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
