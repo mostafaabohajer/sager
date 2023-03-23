@@ -73,7 +73,7 @@ export default function CategoryForm() {
 
           </div>
 
-          <TButton>
+          <TButton marg>
             save
           </TButton>
         </form>

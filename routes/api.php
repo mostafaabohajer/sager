@@ -30,6 +30,10 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::apiResource('/category',\App\Http\Controllers\CategoryController::class);
     Route::apiResource('/user',\App\Http\Controllers\UserController::class);
 
+
+
+    Route::post('/quantity-product/{id}',[\App\Http\Controllers\ProductController::class,'quantityProduct'])->name('quantity.product');
+
     Route::get('/all-category',[\App\Http\Controllers\CategoryController::class,'allCategory'])->name('all.category');
 
     Route::post('/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');

@@ -12,12 +12,12 @@ export default function CategorytList({category , onDeleteClick}) {
       <h4 className="mt-4 text-lg font-bold">{category.categories_number}</h4>
       <div className="flex justify-between items-center mt-3">
       <TButton to={`/category/${category.slug}`} circle link color="green">
-        <PencilIcon className="w-5 h-5 mr-2"/>
+        <PencilIcon className="w-5 h-5 m-2"/>
       </TButton>
 
       {category.id && (
         <TButton onClick={ev => onDeleteClick(category.id)} circle link color="red">
-          <TrashIcon className="w-5 h-5" />
+          <TrashIcon className="w-5 h-5 m-2" />
         </TButton>
       )}
 

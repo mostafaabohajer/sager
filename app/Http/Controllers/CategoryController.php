@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         return CategoryResource::collection(
-            Category::orderBy('updated_at', 'desc')->paginate(2)
+            Category::orderBy('updated_at', 'desc')->paginate(10)
         );
 
     }

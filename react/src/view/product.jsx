@@ -35,10 +35,16 @@ export default function Product() {
     if (window.confirm("Are you sure you want to delete this product?")) {
       axiosClient.delete(`/product/${id}`).then(() => {
         getProducts();
-        showToast('The product was deleted');
       });
     }
   };
+  const onQuantityClick = (id) => {
+    axiosClient.post(`/quantity-product/${id}`).then(() => {
+      getProducts();
+    });
+  };
+
+
 
   useEffect(() => {
     getProducts();
@@ -65,11 +71,11 @@ export default function Product() {
               <h4 className="mt-4 text-lg font-bold">action</h4>
             </div>
             {products.map(product =>(
-              <ProductList product={product} key={product.id} onDeleteClick={onDeleteClick} />
+              <ProductList product={product} key={product.id} onDeleteClick={onDeleteClick} onQuantityClick={onQuantityClick}/>
             ))}
           </div>
           {/*<Pagination meta={meta} onPageClick={onPageClick }/>*/}
-         {products.length > 0 && <Pagination meta={meta} onPageClick={onPageClick} />}
+         {products.length > 0 && <Pagination meta={meta} onPageClick={onPageClick}  />}
         </div>
         )}
         </PageComponent>

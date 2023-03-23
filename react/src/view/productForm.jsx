@@ -226,7 +226,7 @@ export default function ProductForm() {
 
           </div>
 
-          <TButton>
+          <TButton marg>
             save
           </TButton>
         </form>

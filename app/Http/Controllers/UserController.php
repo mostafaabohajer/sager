@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $user = $request->user()->id;
         return UserResource::collection(
-            User::orderBy('updated_at', 'desc')->whereNot('id',$user)->paginate(2)
+            User::orderBy('updated_at', 'desc')->whereNot('id',$user)->paginate(10)
         );
 
     }

@@ -31,7 +31,6 @@ export default function User() {
     if (window.confirm("Are you sure you want to delete this user?")) {
       axiosClient.delete(`/user/${id}`).then(() => {
         getUsers();
-        showToast('The user was deleted');
       });
     }
   };

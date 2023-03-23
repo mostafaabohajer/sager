@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         $user = $request->user()->id;
         return ProductResource::collection(
-            Product::where('user_id',$user)->orderBy('updated_at', 'desc')->paginate(2)
+            Product::where('user_id',$user)->orderBy('updated_at', 'desc')->paginate(10)
         );
 
     }
@@ -147,5 +147,15 @@ class ProductController extends Controller
         file_put_contents($relativePath, $image);
 
         return $relativePath;
+    }
+    public function quantityProduct($id){
+        $product = Product::where('id',$id)->where('user_id',auth()->id());
+        if(!$product->get()->isEmpty()){
+            if($product->first()->quantity > 1){
+                $product->update([
+                    'quantity' => $product->first()->quantity - 1
+                ]);
+            }
+        }
     }
 }

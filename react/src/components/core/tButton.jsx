@@ -9,6 +9,7 @@ export default function TButton(
     link = false,
     target = "_blank",
     onClick = () => {},
+    marg = null,
     children,
   }) {
   let classes = [
@@ -22,6 +23,9 @@ export default function TButton(
 
   ];
 
+  if(marg){
+    classes = [...classes, "mt-3"];
+  }
   if (link) {
     classes = [...classes, "transition-colors"];
 
@@ -29,11 +33,14 @@ export default function TButton(
       case "indigo":
         classes = [...classes, "text-primary"];
         break;
+      case "green":
+        classes = [...classes, "text-success"];
+        break;
       case "red":
         classes = [...classes, "text-danger"];
     }
   } else {
-    classes = [...classes, "my-2","text-dark", "focus:ring-2", "focus:ring-offset-2"];
+    classes = [...classes, "text-dark", "focus:ring-2", "focus:ring-offset-2"];
 
     switch (color) {
       case "indigo":
@@ -66,9 +73,11 @@ export default function TButton(
       "justify-center",
       "rounded-full",
       "text-sm",
+      "text-sm",
+      "my-2",
     ];
   } else {
-    classes = [...classes, "py-2", "px-4", "rounded-md"];
+    classes = [...classes, "m-0","py-2", "px-4", "rounded-md"];
   }
 
   return (

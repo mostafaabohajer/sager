@@ -98,7 +98,7 @@ export default function UserForm() {
             {error?.errors?.password && (<div className="text-danger">{error.errors.password}</div>)}
 
           </div>
-          <TButton>
+          <TButton marg>
             save
           </TButton>
         </form>

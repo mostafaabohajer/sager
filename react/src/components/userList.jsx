@@ -12,12 +12,12 @@ export default function UserList({user , onDeleteClick}) {
       <h4 className="mt-4 text-lg font-bold">{user.email}</h4>
       <div className="flex justify-between items-center mt-3">
       <TButton to={`/user/${user.slug}`} circle link color="green">
-        <PencilIcon className="w-5 h-5 mr-2"/>
+        <PencilIcon className="w-5 h-5 m-2"/>
       </TButton>
 
       {user.id && (
         <TButton onClick={ev => onDeleteClick(user.id)} circle link color="red">
-          <TrashIcon className="w-5 h-5" />
+          <TrashIcon className="w-5 h-5 m-2" />
         </TButton>
       )}
 
